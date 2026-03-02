@@ -95,6 +95,11 @@ if ($tasks_index !== false) {
             break;
     }
 } else {
+    // If it's a root request (empty URI parts or just one empty part), redirect to dashboard
+    if (empty($uri_parts) || (count($uri_parts) === 1 && empty($uri_parts[0]))) {
+        header("Location: dashboard.php");
+        exit;
+    }
     http_response_code(404);
     echo json_encode(["message" => "Endpoint not found"]);
 }
