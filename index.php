@@ -11,7 +11,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri_parts = explode('/', trim($uri, '/'));
 
-// Find the index of 'tasks' in the URI parts
+// Filter out empty parts and look for 'tasks'
+$uri_parts = array_values(array_filter($uri_parts));
 $tasks_index = array_search('tasks', $uri_parts);
 
 $taskModel = new Task();

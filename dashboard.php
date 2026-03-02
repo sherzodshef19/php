@@ -77,7 +77,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        const API_URL = 'index.php/tasks';
+        // Dynamically detect the API URL based on the current script location
+    const getApiUrl = () => {
+        const path = window.location.pathname;
+        const directory = path.substring(0, path.lastIndexOf('/'));
+        return directory + '/index.php/tasks';
+    };
+
+    const API_URL = getApiUrl();
+    console.log('API URL initialized as:', API_URL);
 
         // Load tasks on startup
         document.addEventListener('DOMContentLoaded', loadTasks);
