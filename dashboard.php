@@ -158,7 +158,7 @@
         // Update task status
         async function updateStatus(id, status) {
             try {
-                await fetch(\`\${API_URL}/\${id}\`, {
+                await fetch(`${API_URL}/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status })
@@ -173,7 +173,7 @@
     async function deleteTask(id) {
         if (!confirm('Are you sure?')) return;
         try {
-            await fetch(\`\${API_URL}/\${id}\`, { method: 'DELETE' });
+            await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
             loadTasks();
         } catch (error) {
             console.error('Error deleting task:', error);
