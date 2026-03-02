@@ -25,6 +25,9 @@ A simple REST API for managing a To-Do list, built with pure PHP and SQLite.
    ```bash
    php -S localhost:8000
    ```
+4. **Open the Dashboard**:
+   Access the web interface at:
+   `http://localhost:8000/dashboard.php`
 
 ## API Endpoints
 
