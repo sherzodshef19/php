@@ -1,0 +1,4 @@
+*.sqlite
+.DS_Store
+.vscode/
+php_errors.log
