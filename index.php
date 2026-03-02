@@ -11,6 +11,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri_parts = explode('/', trim($uri, '/'));
 
+// Find the index of 'tasks' in the URI parts
+$tasks_index = array_search('tasks', $uri_parts);
+
 $taskModel = new Task();
 
 // Handle OPTIONS request for CORS
@@ -21,8 +24,10 @@ if ($method === 'OPTIONS') {
 
 // Routes
 // /tasks
-if (isset($uri_parts[0]) && $uri_parts[0] === 'tasks') {
-    $id = isset($uri_parts[1]) ? (int) $uri_parts[1] : null;
+if ($tasks_index !== false) {
+    $id = isset($uri_parts[$tasks_index + 1]) && is_numeric($uri_parts[$tasks_index + 1])
+        ? (int) $uri_parts[$tasks_index + 1]
+        : null;
 
     switch ($method) {
         case 'GET':
